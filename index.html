@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mcdr.top - 专业二级域名出售与免费托管服务</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0c1445, #1a2a6c, #4a235a);
+            color: #fff;
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
+        }
+        
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 10;
+        }
+        
+        header {
+            text-align: center;
+            padding: 40px 0;
+            animation: fadeInDown 1s ease;
+        }
+        
+        .logo {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            color: #4dabf7;
+            text-shadow: 0 0 20px rgba(77, 171, 247, 0.7);
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(to right, #4dabf7, #ffd43b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            color: #e9ecef;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .domain-input-container {
+            background: rgba(0, 0, 0, 0.4);
+            border: 2px solid #4dabf7;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            margin: 30px auto;
+            max-width: 600px;
+            box-shadow: 0 0 30px rgba(77, 171, 247, 0.5);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+        
+        .domain-input-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 50px rgba(77, 171, 247, 0.8);
+        }
+        
+        .domain-input-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .domain-input {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid #4dabf7;
+            border-radius: 8px 0 0 8px;
+            padding: 15px;
+            font-size: 1.5rem;
+            color: white;
+            flex-grow: 1;
+            max-width: 400px;
+            transition: all 0.3s ease;
+        }
+        
+        .domain-input:focus {
+            outline: none;
+            border-color: #ffd43b;
+            box-shadow: 0 0 10px rgba(255, 212, 59, 0.5);
+        }
+        
+        .domain-input.error {
+            border-color: #ff6b6b;
+            box-shadow: 0 0 10px rgba(255, 107, 107, 0.5);
+        }
+        
+        .domain-suffix {
+            background: rgba(77, 171, 247, 0.3);
+            border: 2px solid #4dabf7;
+            border-left: none;
+            border-radius: 0 8px 8px 0;
+            padding: 15px;
+            font-size: 1.5rem;
+            color: #ffd43b;
+        }
+        
+        .price-display {
+            margin-top: 20px;
+            font-size: 1.3rem;
+            min-height: 50px;
+        }
+        
+        .original-price {
+            text-decoration: line-through;
+            color: #adb5bd;
+            margin-right: 15px;
+        }
+        
+        .final-price {
+            color: #ffd43b;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+        
+        .price-note {
+            font-size: 0.9rem;
+            color: #adb5bd;
+            margin-top: 10px;
+        }
+        
+        .info-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 20px;
+            height: 20px;
+            background: #4dabf7;
+            color: white;
+            border-radius: 50%;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-left: 8px;
+            cursor: help;
+            position: relative;
+        }
+        
+        .info-tooltip {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            padding: 10px;
+            border-radius: 5px;
+            width: 250px;
+            font-size: 0.9rem;
+            visibility: hidden;
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 100;
+            pointer-events: none;
+        }
+        
+        .info-icon:hover .info-tooltip {
+            visibility: visible;
+            opacity: 1;
+        }
+        
+        .error-message {
+            color: #ff6b6b;
+            margin-top: 10px;
+            font-size: 0.9rem;
+            display: none;
+        }
+        
+        .error-message.show {
+            display: block;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 50px 0;
+        }
+        
+        .feature-card {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            position: relative;
+            overflow: hidden;
+            z-index: 2;
+        }
+        
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(77, 171, 247, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            z-index: -1;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            background: rgba(77, 171, 247, 0.15);
+        }
+        
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+        
+        .feature-icon {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: #4dabf7;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover .feature-icon {
+            transform: scale(1.2);
+            color: #ffd43b;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: #e9ecef;
+        }
+        
+        .cta-section {
+            text-align: center;
+            padding: 60px 20px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
+            margin: 50px 0;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(77, 171, 247, 0.3);
+        }
+        
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(77, 171, 247, 0.1) 0%, transparent 70%);
+            z-index: -1;
+            animation: rotate 20s linear infinite;
+        }
+        
+        .cta-title {
+            font-size: 2.8rem;
+            margin-bottom: 30px;
+            color: #ffd43b;
+            text-shadow: 0 0 15px rgba(255, 212, 59, 0.5);
+        }
+        
+        .qq-group {
+            background: rgba(0, 0, 0, 0.5);
+            border: 2px solid #ffd43b;
+            border-radius: 15px;
+            padding: 30px;
+            display: inline-block;
+            margin: 30px 0;
+            box-shadow: 0 0 30px rgba(255, 212, 59, 0.4);
+            animation: pulse-gold 2s infinite;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .qq-group:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 50px rgba(255, 212, 59, 0.7);
+        }
+        
+        .qq-icon {
+            font-size: 4rem;
+            color: #12b7f5;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .qq-group:hover .qq-icon {
+            transform: rotate(10deg) scale(1.2);
+            color: #ffd43b;
+        }
+        
+        .group-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            letter-spacing: 3px;
+            color: #ffd43b;
+            margin: 15px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .qq-group:hover .group-number {
+            letter-spacing: 5px;
+            text-shadow: 0 0 15px rgba(255, 212, 59, 0.7);
+        }
+        
+        .contact-text {
+            font-size: 1.2rem;
+            margin-top: 20px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            color: #e9ecef;
+        }
+        
+        .highlight {
+            color: #ffd43b;
+            font-weight: bold;
+            text-shadow: 0 0 8px rgba(255, 212, 59, 0.5);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px;
+            margin-top: 50px;
+            background: rgba(0, 0, 0, 0.5);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            z-index: 10;
+        }
+        
+        .domain-examples {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 30px 0;
+        }
+        
+        .domain-example {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .domain-example::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(77, 171, 247, 0.3), transparent);
+            transition: left 0.6s ease;
+        }
+        
+        .domain-example:hover {
+            background: rgba(77, 171, 247, 0.3);
+            transform: translateY(-5px);
+        }
+        
+        .domain-example:hover::before {
+            left: 100%;
+        }
+        
+        .particle-explosion {
+            position: absolute;
+            pointer-events: none;
+            z-index: 100;
+        }
+        
+        .explosion-particle {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #4dabf7;
+            animation: explode 1s forwards;
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 30px rgba(77, 171, 247, 0.5);
+            }
+            50% {
+                box-shadow: 0 0 50px rgba(77, 171, 247, 0.8);
+            }
+            100% {
+                box-shadow: 0 0 30px rgba(77, 171, 247, 0.5);
+            }
+        }
+        
+        @keyframes pulse-gold {
+            0% {
+                box-shadow: 0 0 30px rgba(255, 212, 59, 0.4);
+            }
+            50% {
+                box-shadow: 0 0 50px rgba(255, 212, 59, 0.7);
+            }
+            100% {
+                box-shadow: 0 0 30px rgba(255, 212, 59, 0.4);
+            }
+        }
+        
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        
+        @keyframes explode {
+            0% {
+                opacity: 1;
+                transform: translate(0, 0) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(var(--tx), var(--ty)) scale(0.1);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .domain-input-container {
+                padding: 20px;
+            }
+            
+            .domain-input, .domain-suffix {
+                font-size: 1.2rem;
+                padding: 10px;
+            }
+            
+            .qq-group {
+                padding: 20px;
+            }
+            
+            .group-number {
+                font-size: 1.8rem;
+            }
+            
+            .feature-card {
+                padding: 20px;
+            }
+            
+            .cta-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 粒子背景容器 -->
+    <div id="particles-js"></div>
+    
+    <!-- 粒子爆炸效果容器 -->
+    <div id="explosions-container"></div>
+    
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-globe-americas"></i>
+            </div>
+            <h1>mcdr.top 二级域名出售</h1>
+            <p class="subtitle">二级域名注册 + 免费Cloudflare托管 + 正常安全防护</p>
+
+        </header>
+		
+        <div class="domain-input-container">
+                <div class="domain-input-wrapper">
+                    <input type="text" class="domain-input" id="domain-input" placeholder="预测价格" autocomplete="off">
+                    <div class="domain-suffix">.mcdr.top</div>
+                </div>
+                <div class="error-message" id="error-message"></div>
+                <div class="price-display" id="price-display">
+                    <span class="original-price" id="original-price">原价: 0元/2月</span>
+                    <span class="final-price" id="final-price">首2月: 0元</span>
+                    <span class="info-icon" id="price-info">
+                        i
+                        <div class="info-tooltip">
+                            <p><strong>原价</strong>: 正常价格，按每2个月计费</p>
+                            <p><strong>首2月</strong>: 享受1元优惠后的价格</p>
+                            <p>价格仅供参考，最终价格以群内咨询为准</p>
+                        </div>
+                    </span>
+                </div>
+                <div class="price-note">* 价格仅为预测，可能不准确。最终价格请咨询QQ群</div>
+            </div>
+        <section class="features">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>Cloudflare 防护</h3>
+                <p>所有二级域名均受到Cloudflare安全保护</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-rocket"></i>
+                </div>
+                <h3>最近CDN加速</h3>
+                <p>通过Cloudflare节点CDN网络加速</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-server"></i>
+                </div>
+                <h3>免费托管服务</h3>
+                <p>提供稳定的免费托管服务，无需自备服务器，一键部署您的网站内容，提供技术支持</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-certificate"></i>
+                </div>
+                <h3>免费SSL证书</h3>
+                <p>自动配置HTTPS加密连接，支持HTTP/3协议</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-sync-alt"></i>
+                </div>
+                <h3>无限流量带宽</h3>
+                <p>不限制流量使用，满足网站需求，无需担心流量超标</p>
+            </div>
+        </section>
+        
+        <div class="domain-examples">
+            <div class="domain-example">blog</div>
+            <div class="domain-example">shop</div>
+            <div class="domain-example">app</div>
+            <div class="domain-example">game</div>
+            <div class="domain-example">art</div>
+            <div class="domain-example">tech</div>
+        </div>
+        
+        <section class="cta-section">
+            <h2 class="cta-title">立即获取您的专属二级域名</h2>
+            <p class="contact-text">加入我们的QQ群咨询详细价格、域名可用性及注册流程</p>
+            
+            <div class="qq-group" id="qq-group">
+                <div class="qq-icon">
+                    <i class="fab fa-qq"></i>
+                </div>
+                <h3>联系QQ群</h3>
+                <div class="group-number">963336307</div>
+                <p>搜索群号加入或*<a href="https://qm.qq.com/q/eUu1uDaJby">点击加入</a></p>
+            </div>
+            
+            <p class="contact-text"><span class="highlight">温馨提示：</span>所有价格、优惠和域名具体信息请联系群主咨询</p>
+        </section>
+    </div>
+    
+    <footer>
+        <p>mcdr.top 二级域名服务 | 专业 稳定 安全</p>
+        <p>提供基于Cloudflare的优质域名解析与托管解决方案</p>
+    </footer>
+    
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        // 粒子背景初始化
+        particlesJS('particles-js', {
+            particles: {
+                number: {
+                    value: 80,
+                    density: {
+                        enable: true,
+                        value_area: 800
+                    }
+                },
+                color: {
+                    value: "#4dabf7"
+                },
+                shape: {
+                    type: "circle",
+                    stroke: {
+                        width: 0,
+                        color: "#000000"
+                    }
+                },
+                opacity: {
+                    value: 0.5,
+                    random: true,
+                    anim: {
+                        enable: true,
+                        speed: 1,
+                        opacity_min: 0.1,
+                        sync: false
+                    }
+                },
+                size: {
+                    value: 3,
+                    random: true,
+                    anim: {
+                        enable: true,
+                        speed: 2,
+                        size_min: 0.3,
+                        sync: false
+                    }
+                },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: "#4dabf7",
+                    opacity: 0.4,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 1,
+                    direction: "none",
+                    random: true,
+                    straight: false,
+                    out_mode: "out",
+                    bounce: false,
+                    attract: {
+                        enable: true,
+                        rotateX: 600,
+                        rotateY: 1200
+                    }
+                }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: {
+                        enable: true,
+                        mode: "grab"
+                    },
+                    onclick: {
+                        enable: true,
+                        mode: "push"
+                    },
+                    resize: true
+                },
+                modes: {
+                    grab: {
+                        distance: 140,
+                        line_linked: {
+                            opacity: 1
+                        }
+                    },
+                    push: {
+                        particles_nb: 4
+                    }
+                }
+            },
+            retina_detect: true
+        });
+        
+        // 点击爆炸效果
+        document.addEventListener('click', function(e) {
+            createExplosion(e.clientX, e.clientY);
+        });
+        
+        // 为特定元素添加点击爆炸效果
+        const clickableElements = document.querySelectorAll('.domain-example, .qq-group, .domain-input-container');
+        clickableElements.forEach(element => {
+            element.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const rect = this.getBoundingClientRect();
+                const centerX = rect.left + rect.width / 2;
+                const centerY = rect.top + rect.height / 2;
+                createExplosion(centerX, centerY, 30);
+            });
+        });
+        
+        function createExplosion(x, y, particleCount = 20) {
+            const explosion = document.createElement('div');
+            explosion.className = 'particle-explosion';
+            explosion.style.left = `${x}px`;
+            explosion.style.top = `${y}px`;
+            
+            document.getElementById('explosions-container').appendChild(explosion);
+            
+            // 生成爆炸粒子
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'explosion-particle';
+                
+                // 随机角度和距离
+                const angle = Math.random() * Math.PI * 2;
+                const distance = 50 + Math.random() * 100;
+                
+                // 设置CSS变量用于动画
+                particle.style.setProperty('--tx', `${Math.cos(angle) * distance}px`);
+                particle.style.setProperty('--ty', `${Math.sin(angle) * distance}px`);
+                
+                // 随机颜色
+                const colors = ['#4dabf7', '#ffd43b', '#ff6b6b', '#51cf66'];
+                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                
+                // 随机大小
+                const size = 4 + Math.random() * 8;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                explosion.appendChild(particle);
+                
+                // 动画结束后移除粒子
+                setTimeout(() => {
+                    particle.remove();
+                }, 1000);
+            }
+            
+            // 移除爆炸容器
+            setTimeout(() => {
+                explosion.remove();
+            }, 1100);
+        }
+        
+        // 添加悬浮效果
+        document.querySelectorAll('.feature-card, .domain-example, .qq-group').forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                const rect = item.getBoundingClientRect();
+                createExplosion(
+                    rect.left + rect.width/2, 
+                    rect.top + rect.height/2, 
+                    10
+                );
+            });
+        });
+        
+        // 域名价格计算
+        const domainInput = document.getElementById('domain-input');
+        const originalPriceEl = document.getElementById('original-price');
+        const finalPriceEl = document.getElementById('final-price');
+        const errorMessageEl = document.getElementById('error-message');
+
+        // 禁止的域名列表
+        const forbiddenDomains = ['xxx','mcdr','example' ,'ic', 'html', 'site', 'cauc', 'login', 'admin', 'nic', 'www', 'fur', 'mc', 'api', 'cdn', 'mail', 'ftp', 'test'];
+        
+        // 常用词汇加价
+        const premiumWords = {
+            'blog': 2, 'shop': 2, 'app': 2, 'game': 1, 'art': 1, 'tech': 1,
+            'web': 1, 'cloud': 1, 'dev': 1, 'net': 1, 'online': 1, 'store': 2,
+			'website': 2, 'number': 1, 'ture': 2, 'false': 2,'edu': 3, 'health': 2,
+			'creative': 2, 'cloud': 3, 'market': 2, 'studio': 2, 'lab': 3, 'digital': 2, 
+			'biz': 3, 'connect': 2, 'innovation': 1, 'future': 2, 'smart': 3, 'net': 3, 
+			'center': 1, 'social': 2, 'techno': 2, 'security': 2, 'entertainment': 1, 'green': 3, 'travel': 2, 
+			'media': 2, 'book': 3, 'play': 3, 'trade': 2, 'careers': 1, 'pro': 3, 'app': 3, 
+			'fund': 2, 'pet': 3, 'kids': 3, 'food': 2, 'fitness': 2, 'home': 3, 'car': 3, 
+			'game': 3, 'news': 2, 'music': 2, 'art': 3, 'sport': 2, 'wellness': 1, 'style': 3, 
+			'design': 2, 'grow': 2, 'global': 2, 'prime': 3, 'gold': 3, 'silver': 2, 'beta': 2, 
+			'alpha': 3, 'hub': 3, 'space': 2, 'earth': 2, 'sun': 3, 'moon': 3, 'star': 3, 
+			'spark': 2, 'wave': 2, 'flow': 3, 'peak': 2, 'edge': 3, 'base': 2, 'core': 3, 
+			'top': 3, 'vip': 3, 'max': 3, 'min': 2, 'plus': 3, 'pro': 3, 'lite': 2, 
+			'mega': 3, 'uni': 3, 'multi': 2, 'super': 3, 'ultra': 3, 'micro': 2, 'nano': 2, 
+			'macro': 2, 'meta': 3, 'cyber': 2, 'web': 3, 'link': 3, 'page': 2, 'site': 2, 
+			'host': 2, 'chat': 3, 'call': 3, 'meet': 3, 'join': 3, 'share': 3, 'message': 2,
+			'give': 2, 'help': 2, 'care': 2, 'love': 3, 'hope': 3, 'dream': 3, 'joy': 3, 
+			'peace': 3, 'happy': 2, 'fun': 3, 'cool': 3, 'hot': 3, 'wild': 2, 'cute': 3, 
+			'sweet': 3, 'gift': 3, 'party': 2, 'holiday': 1, 'festival': 1, 'season': 2, 'spring': 3, 
+			'summer': 3, 'autumn': 2, 'winter': 2, 'morning': 2, 'night': 3, 'day': 3, 'week': 2, 
+			'month': 2, 'year': 2, 'time': 3, 'clock': 2, 'date': 3, 'today': 3, 'tomorrow': 2, 
+			'yesterday': 2, 'now': 3, 'soon': 3, 'fast': 3, 'quick': 2, 'slow': 1, 'easy': 3, 
+			'hard': 2, 'strong': 3, 'soft': 2, 'light': 3, 'dark': 3, 'color': 2, 'red': 3, 
+			'blue': 3, 'green': 3, 'yellow': 3, 'black': 3, 'white': 3, 'pink': 3, 'purple': 3, 
+			'orange': 3, 'gray': 2, 'brown': 2, 'gold': 3, 'silver': 2, 'bronze': 1, 'metal': 2, 
+			'wood': 2, 'stone': 2, 'water': 3, 'fire': 3, 'air': 3, 'earth': 3, 'ocean': 3, 
+			'mountain': 2, 'river': 2, 'forest': 2, 'city': 3, 'town': 2, 'village': 1, 'world': 3, 
+			'planet': 2, 'universe': 1, 'galaxy': 2, 'star': 3, 'comet': 2, 'moon': 3, 'sun': 3, 
+			'earth': 3, 'mars': 3, 'jupiter': 2, 'saturn': 2, 'venus': 3, 'mercury': 2, 'neptune': 2, 
+			'uranus': 2, 'pluto': 1, 'astro': 3, 'cosmo': 3, 'nova': 3, 'quasar': 1, 'nebula': 2, 
+			'orbit': 3, 'space': 3, 'launch': 2, 'rocket': 2, 'satellite': 1, 'astronaut': 1, 'telescope': 1, 
+			'observatory': 1, 'physics': 2, 'chemistry': 2, 'biology': 2, 'math': 3, 'science': 3, 'tech': 3, 
+			'robot': 2, 'ai': 3, 'bot': 3, 'cyber': 2, 'virtual': 2, 'metaverse': 1, 'blockchain': 1, 
+			'crypto': 3, 'token': 2, 'wallet': 2, 'exchange': 2, 'finance': 2, 'bank': 3, 'credit': 2, 
+			'loan': 2, 'invest': 2, 'wealth': 3, 'profit': 2, 'money': 3, 'cash': 3, 'card': 3, 
+			'pay': 3, 'bill': 2, 'account': 2, 'save': 2, 'spend': 2, 'budget': 2, 'tax': 1, 
+			'insurance': 1, 'retire': 1, 'estate': 2, 'mortgage': 1, 'charity': 2, 'donate': 2, 'fund': 2, 
+			'give': 2, 'help': 2, 'care': 2, 'volunteer': 1, 'nonprofit': 1, 'cause': 2, 'hope': 3, 
+			'love': 3, 'peace': 3, 'joy': 3, 'family': 3, 'home': 3, 'parent': 2, 'child': 3, 
+			'baby': 3, 'kid': 3, 'teen': 2, 'youth': 2, 'adult': 2, 'senior': 1, 'health': 2, 
+			'wellness': 2, 'fitness': 2, 'diet': 2, 'sport': 2, 'yoga': 3, 'gym': 3, 'run': 3, 
+			'bike': 3, 'swim': 3, 'dance': 3, 'music': 2, 'art': 3, 'theater': 2, 'film': 2, 
+			'esports': 2, 'play': 3, 'fun': 3, 'party': 2, 'holiday': 1, 'travel': 2, 'vacation': 2, 
+			'hotel': 3, 'flight': 2, 'car': 3, 'rent': 2, 'tour': 2, 'guide': 2, 'map': 3, 
+			'trip': 3, 'adventure': 2, 'explore': 2, 'discover': 2, 'culture': 2, 'history': 1, 'museum': 1, 
+			'design': 2, 'fashion': 3, 'style': 3, 'beauty': 3, 'makeup': 2, 'hair': 2, 'nail': 2, 
+			'skin': 3, 'fragrance': 2, 'jewelry': 3, 'clothes': 2, 'shoes': 3, 'bag': 3, 'watch': 3, 
+			'accessory': 2, 'brand': 3, 'shop': 3, 'store': 2, 'market': 2, 'sale': 3, 'discount': 2, 
+			'deal': 3, 'buy': 3, 'sell': 3, 'order': 3, 'cart': 3, 'checkout': 2, 'delivery': 2, 
+			'ship': 2, 'package': 2, 'customer': 2, 'service': 2, 'support': 2, 'help': 2, 'feedback': 2, 
+			'review': 2, 'rating': 2, 'star': 3, 'like': 3, 'share': 3, 'follow': 3, 'social': 2, 
+			'media': 2, 'network': 2, 'chat': 3, 'group': 2, 'community': 2, 'forum': 1, 'blog': 2, 
+			'vlog': 2, 'post': 2, 'update': 2, 'news': 2, 'info': 2, 'data': 3, 'stats': 2, 
+			'report': 2, 'research': 2, 'study': 2, 'learn': 3, 'teach': 2, 'edu': 3, 'school': 2, 
+			'college': 2, 'university': 1, 'course': 2, 'class': 2, 'lesson': 2, 'book': 3, 'read': 3, 
+			'write': 3, 'paper': 2, 'exam': 1, 'degree': 1, 'grad': 2, 'alumni': 1, 
+			'scholarship': 1, 'host': 2, 'domain': 3, 'server': 2, 'storage': 2, 
+			'backup': 2, 'security': 2, 'protect': 2, 'virus': 1, 'hack': 1, 'code': 3, 'software': 2, 
+			'program': 2, 'developer': 2, 'tech': 3, 'gadget': 2, 'device': 2, 'phone': 3, 'tablet': 2, 
+			'laptop': 2, 'computer': 2, 'screen': 2, 'keyboard': 1, 'mouse': 1, 'printer': 1, 'camera': 3, 
+			'photo': 3, 'video': 3, 'edit': 2, 'design': 2, 'create': 3, 'art': 3, 'graphic': 2, 
+			'web': 3, 'ux': 3, 'ui': 3, 'brand': 3, 'marketing': 2, 'advertise': 2, 'promote': 2, 
+			'campaign': 2, 'seo': 3, 'sem': 2, 'social': 2, 'media': 2, 'influencer': 1, 'content': 3, 
+			'blog': 2, 'vlog': 2, 'video': 3, 'podcast': 2, 'newsletter': 2, 'email': 2, 'list': 2, 
+			'subscribe': 2, 'member': 2, 'club': 3, 'group': 2, 'community': 2, 'network': 2, 'connect': 2, 
+			'meet': 3, 'event': 2, 'conference': 1, 'summit': 2, 'expo': 2, 'fair': 2, 'show': 3, 
+			'festival': 1, 'celebration': 2, 'party': 2, 'wedding': 2, 'birthday': 2, 'anniversary': 2, 'gift': 3, 
+			'present': 2, 'flower': 3, 'cake': 3, 'balloon': 1, 'decor': 2, 'photography': 2, 'video': 3, 
+			'planning': 2, 'coordination': 1, 'venue': 2, 'catering': 1, 'music': 2, 'entertainment': 1, 'dj': 3, 
+			'band': 2, 'artist': 3, 'performer': 2, 'stage': 2, 'lights': 2, 'sound': 2, 'production': 2, 
+			'event': 2, 'management': 2, 'company': 2, 'business': 3, 'corporate': 2, 'enterprise': 1, 'startup': 3, 
+			'founder': 2, 'ceo': 3, 'team': 2, 'employee': 2, 'hiring': 2, 'jobs': 2, 'careers': 1, 
+			'recruit': 2, 'resume': 2, 'interview': 2, 'training': 2, 'learning': 3, 'development': 2, 'productivity': 2, 
+			'software': 2, 'tool': 2, 'app': 3, 'platform': 2, 'solution': 2, 'service': 2, 'support': 2, 
+			'client': 2, 'customer': 2, 'partnership': 2, 'collaboration': 2, 'network': 2, 'connect': 2, 'grow': 2, 
+			'expand': 2, 'global': 2, 'international': 1, 'market': 2, 'sales': 3, 'revenue': 2, 'profit': 2, 
+			'investment': 2, 'finance': 2, 'accounting': 1, 'tax': 1, 'audit': 1, 'banking': 2, 'credit': 2, 
+			'loan': 2, 'mortgage': 1, 'insurance': 1, 'wealth': 3, 'management': 2, 'planning': 2, 'retirement': 1, 
+			'estate': 2, 'trust': 2, 'charity': 2, 'foundation': 1, 'nonprofit': 1, 'giving': 2, 'donation': 2, 
+			'cause': 2, 'help': 2, 'support': 2, 'volunteer': 1, 'community': 2, 'service': 2, 'project': 2, 
+			'initiative': 1, 'impact': 2, 'change': 2, 'world': 3, 'peace': 3, 'justice': 2, 'equality': 2, 
+			'rights': 2, 'environment': 2, 'green': 3, 'sustainability': 1, 'eco': 3, 'earth': 3, 'planet': 2, 
+			'climate': 2, 'action': 2, 'energy': 3, 'solar': 3, 'wind': 2, 'hydro': 2, 'renewable': 2, 
+			'clean': 3, 'air': 3, 'water': 3, 'forest': 2, 'biodiversity': 1, 'conservation': 2, 'wildlife': 2, 
+			'ocean': 3, 'plastic': 1, 'pollution': 1, 'recycle': 2, 'reduce': 2, 'reuse': 2, 'green': 3, 
+			'living': 2, 'healthy': 3, 'wellness': 2, 'organic': 3, 'natural': 3, 'farm': 2, 'food': 2, 
+			'diet': 2, 'nutrition': 2, 'vegan': 3, 'vegetarian': 2, 'glutenfree': 1, 'fitness': 2, 'exercise': 2, 
+			'sport': 2, 'yoga': 3, 'gym': 3, 'run': 3, 'bike': 3, 'swim': 3, 'dance': 3, 
+			'music': 2, 'art': 3, 'culture': 2, 'history': 1, 'travel': 2, 'explore': 2, 'discover': 2, 
+			'adventure': 2, 'landscape': 2, 'nature': 3, 'mountain': 2, 'river': 2, 'beach': 3, 'island': 2, 
+			'city': 3, 'town': 2, 'village': 1, 'world': 3, 'planet': 2, 'universe': 1, 'galaxy': 2, 
+			'star': 3, 'moon': 3, 'sun': 3, 'earth': 3, 'space': 3, 'astronomy': 1, 'cosmology': 1, 
+			'physics': 2, 'chemistry': 2, 'biology': 2, 'math': 3, 'science': 3, 'tech': 3, 'robotics': 2, 
+			'machinelearning': 1, 'data': 3, 'analytics': 2, 'bigdata': 1, 'cloud': 3, 'computing': 2, 
+			'network': 2, 'security': 2, 'cybersecurity': 1, 'hack': 1, 'code': 3, 'programming': 2, 'developer': 2, 
+			'app': 3, 'software': 2, 'platform': 2, 'website': 2, 'domain': 3, 'hosting': 2, 'email': 2, 
+			'marketing': 2, 'seo': 3, 'sem': 2, 'socialmedia': 1, 'content': 3, 'blog': 2, 'vlog': 2, 
+			'video': 3, 'podcast': 2, 'newsletter': 2, 'emailmarketing': 1, 'sales': 3, 'ecommerce': 2, 'shopping': 3, 
+			'cart': 3, 'checkout': 2, 'payment': 2, 'delivery': 2, 'logistics': 1, 'warehouse': 1, 'inventory': 1, 
+			'supplychain': 1, 'customer': 2, 'service': 2, 'support': 2, 'feedback': 2, 'review': 2, 'rating': 2, 
+			'loyalty': 2, 'member': 2, 'subscription': 2, 'club': 3, 'community': 2, 'network': 2, 'connect': 2, 
+			'meet': 3, 'event': 2, 'conference': 1, 'expo': 2, 'fair': 2, 'show': 3, 'festival': 1, 
+			'celebration': 2, 'party': 2, 'wedding': 2, 'birthday': 2, 'anniversary': 2, 'gift': 3, 'present': 2, 
+			'flower': 3, 'cake': 3, 'balloon': 1, 'decor': 2, 'photography': 2, 'video': 3, 'planning': 2, 
+			'coordination': 1, 'venue': 2, 'catering': 1, 'music': 2, 'entertainment': 1, 'dj': 3, 'band': 2, 
+			'artist': 3, 'performer': 2, 'stage': 2, 'lights': 2, 'sound': 2, 'production': 2, 'event': 2, 
+			'management': 2
+        };
+
+        function calculatePrice(input) {
+            // 重置错误状态
+            domainInput.classList.remove('error');
+            errorMessageEl.classList.remove('show');
+            errorMessageEl.textContent = '';
+            
+            // 空值处理
+            if (!input) {
+                originalPriceEl.textContent = '原价: 0元/2月';
+                finalPriceEl.textContent = '首2月: 0元';
+                return;
+            }
+            
+            // 验证总长度（包括点）
+            if (input.length > 25) {
+                showError('总长度超过限制（最多25个字符）');
+                return;
+            }
+            
+            // 验证字符合法性（只允许字母、数字和点）
+            if (!/^[a-z0-9.]+$/.test(input)) {
+                showError('只允许字母、数字和点号');
+                return;
+            }
+            
+            // 验证点号数量
+            const dotCount = (input.match(/\./g) || []).length;
+            if (dotCount > 2) {
+                showError('点号不能超过2个');
+                return;
+            }
+            
+            // 验证点号位置
+            if (input.startsWith('.') || input.endsWith('.')) {
+                showError('不能以点号开头或结尾');
+                return;
+            }
+            
+            // 验证连续点号
+            if (input.includes('..')) {
+                showError('不能有连续点号');
+                return;
+            }
+            
+            // 验证每个部分不为空
+            const parts = input.split('.');
+            if (parts.some(part => part.length === 0)) {
+                showError('每个部分不能为空');
+                return;
+            }
+            
+            // 计算价格的部分（最后一个部分）
+            const pricePart = parts[parts.length - 1];
+            
+            // 检查是否在禁止列表中
+            if (forbiddenDomains.includes(pricePart)) {
+                originalPriceEl.textContent = '原价: 不可用';
+                finalPriceEl.textContent = '此域名保留';
+                return;
+            }
+            
+            // 计算基础价格
+            let basePrice = 6; // 默认价格
+            if (pricePart.length === 1) {
+                basePrice = 8;
+            } else if (pricePart.length === 2) {
+                basePrice = 7;
+            } else if (pricePart.length === 3) {
+                basePrice = 6.5;
+            }
+            
+            // 检查常用词汇加价
+            let premiumAdd = 0;
+            for (const [word, add] of Object.entries(premiumWords)) {
+                if (pricePart === word) {
+                    premiumAdd = add;
+                    break;
+                }
+            }
+            
+            const originalPrice = basePrice + premiumAdd;
+            const firstPeriodPrice = Math.max(originalPrice - 1, 0); // 首2月减1元，最低0元
+            
+            originalPriceEl.textContent = `原价: ${originalPrice.toFixed(originalPrice % 1 === 0 ? 0 : 1)}元/2月`;
+            finalPriceEl.textContent = `首2月: ${firstPeriodPrice.toFixed(firstPeriodPrice % 1 === 0 ? 0 : 1)}元`;
+        }
+        
+        function showError(message) {
+            domainInput.classList.add('error');
+            errorMessageEl.textContent = message;
+            errorMessageEl.classList.add('show');
+            originalPriceEl.textContent = '原价: 不可用';
+            finalPriceEl.textContent = '无效输入';
+        }
+        
+        // 实时计算价格
+        domainInput.addEventListener('input', function() {
+            const value = this.value.trim().toLowerCase();
+            calculatePrice(value);
+        });
+        
+        // 点击域名示例填充输入框
+        document.querySelectorAll('.domain-example').forEach(example => {
+            example.addEventListener('click', function() {
+                domainInput.value = this.textContent;
+                calculatePrice(this.textContent);
+            });
+        });
+        
+        // 初始化计算
+        calculatePrice('');
+    </script>
+</body>
+</html>
